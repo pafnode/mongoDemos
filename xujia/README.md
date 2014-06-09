@@ -1,23 +1,19 @@
-1. 安装mongodb
-
+###1.安装mongodb:
      $ brew install mongodb
 
-2. 启动mongodb
-
+##2.#启动mongodb:
      $ mongo
 
-3. 导入db数据：
-
+###3.导入db数据:
      $ mongorestore -h localhost:27017 --db  test --directoryperdb  ./db/test
 
-4. install dependencies:
+###4.install dependencies:
 
      $ cd . && npm install
 
-5. run the app:
+###5.run the app:
 
      $ DEBUG=my-application ./bin/www
-
 
 
 ### 参考文档
