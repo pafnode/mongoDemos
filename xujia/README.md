@@ -1,11 +1,3 @@
-###install dependencies:
-     $ cd . && npm install
-
-###run the app:
-     $ DEBUG=my-application ./bin/www
-
-
-### 程序运行准备前提
 1. 安装mongodb
 
 brew install mongodb
