@@ -1,0 +1,94 @@
+参考页面： http://blog.csdn.net/sunchunmei555/article/details/12750301
+
+1. 安装MongoDB数据库
+
+jomatoMacBook-Pro:outter-source xujia$ brew install mongodb
+==> Downloading http://fastdl.mongodb.org/osx/mongodb-osx-x86_64-2.4.3.tgz
+######################################################################## 100.0%
+==> Caveats
+To have launchd start mongodb at login:
+    ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+Then to load mongodb now:
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+Or, if you don't want/need launchctl, you can just run:
+    mongod
+==> Summary
+🍺  /usr/local/Cellar/mongodb/2.4.3-x86_64: 20 files, 315M, built in 3.6 minutes
+
+2. 指定 --dbpath， 启动了MongoDB并运行 
+jomatoMacBook-Pro:code xujia$ mongod --dbpath ~/code/db
+all output going to: /usr/local/var/log/mongodb/mongo.log
+
+将会看到Mongo服务器启动.
+
+3. 打开一个新cmd窗口，创建了一个连接. 你已经启动了MongoDB并运行, 连接了一个客户端. 你将用这个客户端手动在我们的DB上工作. 
+
+1）第一次运行：
+jomatoMacBook-Pro:~ xujia$ mongo
+MongoDB shell version: 2.4.3
+connecting to: test
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+	http://docs.mongodb.org/
+Questions? Try the support group
+	http://groups.google.com/group/mongodb-user
+>
+
+2） 第2次运行：
+jomatoMacBook-Pro:~ xujia$ mongo
+MongoDB shell version: 2.4.3
+connecting to: test
+> 
+
+不要担心connectiong to: test , 如果你没有在命令行中指定, 它仅仅是默认的DB.
+
+4. 创建一个DB
+> use nodetest
+switched to db nodetest
+
+5. 添加数据  
+//当前的DB对象db中加入一个usercollection集合. 
+> db.usercollection.insert({ "username" : "testuser1", "email" : "testuser1@testdomain.com" }) 
+//查找当前集合中所有的内容, 并回车显示
+> db.usercollection.find().pretty() 
+{
+	"_id" : ObjectId("5391049b47f486cc1d0522f7"),
+	"username" : "testuser1",
+	"email" : "testuser1@testdomain.com"
+}
+//再将插入另外2条数据
+> newstuff = [{ "username" : "testuser2", "email" : "testuser2@testdomain.com" }, { "username" : "testuser3", "email" : "testuser3@testdomain.com" }]
+[
+	{
+		"username" : "testuser2",
+		"email" : "testuser2@testdomain.com"
+	},
+	{
+		"username" : "testuser3",
+		"email" : "testuser3@testdomain.com"
+	}
+]
+> db.usercollection.insert(newstuff);
+> db.usercollection.find().pretty()
+{
+	"_id" : ObjectId("5391049b47f486cc1d0522f7"),
+	"username" : "testuser1",
+	"email" : "testuser1@testdomain.com"
+}
+{
+	"_id" : ObjectId("539104cc47f486cc1d0522f8"),
+	"username" : "testuser2",
+	"email" : "testuser2@testdomain.com"
+}
+{
+	"_id" : ObjectId("539104cc47f486cc1d0522f9"),
+	"username" : "testuser3",
+	"email" : "testuser3@testdomain.com"
+}
+>
+
+6. 
+
+
+
